@@ -2,14 +2,18 @@ import React, { Component } from "react";
 import FriendCard from "./components/FriendCard";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
-import friends from "./friends.json";
+import cards from './cards.json';
 import "./App.css";
 
 class App extends Component {
   // Setting this.state.friends to the friends json array
   state = {
-    friends
-  };
+    cards: cards,
+    score: 0,
+    topScore: 0,
+    clickedCards: [],
+    footerText: ""
+  }
 
   removeFriend = id => {
     // Filter this.state.friends for friends with an id not equal to the id being removed
@@ -22,8 +26,8 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Title>Friends List</Title>
-        {this.state.friends.map(friend => (
+        <Title score={this.state.score} topScore={this.state.topScore}>ClickY Game</Title>
+        {this.state.cards.map(friend => (
           <FriendCard
             removeFriend={this.removeFriend}
             id={friend.id}
