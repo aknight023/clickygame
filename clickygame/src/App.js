@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import FriendCard from "./components/FriendCard";
+import Col from "./components/Col";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 import cards from './cards.json';
@@ -11,7 +12,7 @@ class App extends Component {
     cards: cards,
     score: 0,   
     clickedCards: [],
-    footerText: ""
+    warning: ""
   }
 
   reArrangeCards = (array) => {
@@ -31,11 +32,11 @@ class App extends Component {
   checkCard = (id) => {
     
     if(this.state.clickedCards.includes(id)) {
-      console.log("LOST");
-      this.setState({score: 0});
+      console.log();
+      this.setState({score: 0, clickedCards: [], warning:"LOST" });
     }
     else {
-      this.setState({score: this.state.score + 1});
+      this.setState({score: this.state.score + 1, warning: "" });
       this.state.clickedCards.push(id);
       this.reArrangeCards(this.state.cards);
 
@@ -47,17 +48,16 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Title score={this.state.score}>Clicky Game</Title>
-        {this.state.cards.map(card => (
+        <Title score={this.state.score} warning={this.state.warning}>Clicky Game</Title>
+        {this.state.cards.map(card => (<Col>
           <FriendCard
           checkCard={this.checkCard}
             id={card.id}
-            key={card.id}
+            // key={card.id}
             name={card.name}
             image={card.image}
-            // occupation={friend.occupation}
-            // location={friend.location}
-          />
+
+          /></Col>
         ))}
       </Wrapper>
     );
