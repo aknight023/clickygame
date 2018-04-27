@@ -8,3 +8,12 @@ html, body, #root {
   margin: 0;
   height: 100%;
 }
+
+body {
+  background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/b0e53331516629.565449774c2d4.png");
+  background-repeat: no-repeat;
+  background-size: cover; 	
+  background-attachment: fixed;
+  background-position: center;
+
+ }

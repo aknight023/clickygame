@@ -4,7 +4,7 @@ import Col from "./components/Col";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 import cards from './cards.json';
-import "./App.css";
+// import "./App.css";
 
 class App extends Component {
   // Setting this.state.friends to the friends json array
@@ -36,9 +36,16 @@ class App extends Component {
       this.setState({score: 0, clickedCards: [], warning:"LOST" });
     }
     else {
-      this.setState({score: this.state.score + 1, warning: "" });
-      this.state.clickedCards.push(id);
-      this.reArrangeCards(this.state.cards);
+      if (this.state.clickedCards.length === 12) {
+        this.setState({warning:"WINNER", clickedCards: [], score: 0 });
+      }
+      else {
+        console.log(this.state.clickedCards.length)
+        this.setState({score: this.state.score + 1, warning: "" });
+        this.state.clickedCards.push(id);
+        this.reArrangeCards(this.state.cards);
+      }
+
 
     }
    
@@ -48,12 +55,12 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Title score={this.state.score} warning={this.state.warning}>Clicky Game</Title>
+        <Title score={this.state.score} warning={this.state.warning}>Cartoon Clicky Game</Title>
         {this.state.cards.map(card => (<Col>
           <FriendCard
           checkCard={this.checkCard}
             id={card.id}
-            // key={card.id}
+            key={card.id}
             name={card.name}
             image={card.image}
 
