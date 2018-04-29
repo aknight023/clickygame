@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FriendCard from "./components/FriendCard";
+import CartoonCard from "./components/CartoonCard";
 import Col from "./components/Col";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
@@ -41,31 +41,29 @@ class App extends Component {
       }
       else {
         console.log(this.state.clickedCards.length)
+        
         this.setState({score: this.state.score + 1, warning: "" });
         this.state.clickedCards.push(id);
         this.reArrangeCards(this.state.cards);
       }
-
-
     }
    
   }
 
-  // Map over this.state.friends and render a FriendCard component for each friend object
+  // Map over this.state.friends and render a CartoonCard component for each Cartoon object
   render() {
     return (
       <Wrapper>
         <Title score={this.state.score} warning={this.state.warning}>Cartoon Clicky Game</Title>
-        {this.state.cards.map(card => (<Col>
-          <FriendCard
+      <div className= "row" >  {this.state.cards.map(card => (<Col>
+          <CartoonCard
           checkCard={this.checkCard}
             id={card.id}
             key={card.id}
             name={card.name}
             image={card.image}
-
           /></Col>
-        ))}
+        ))} </div>
       </Wrapper>
     );
   }
